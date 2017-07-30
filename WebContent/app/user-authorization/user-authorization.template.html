@@ -1,0 +1,232 @@
+<div class="container-fluid">
+	<div class="page-header">
+		<h4>User Authorization</h4>
+	</div>
+	<form>
+		<div class="row">
+			<div class="col-lg-9">
+			<button type="button" class="btn btn-default btn-sm">Create Role</button> &nbsp; &nbsp;
+			<button type="button" class="btn btn-default btn-sm">Create User Group</button> &nbsp; &nbsp;
+			<button type="button" class="btn btn-default btn-sm">Create Customer Site</button>
+			</div>
+		</div>
+
+		<div class="row"><br/></div>
+		<div class="row" ng-show="selelectionTable.length > 0">
+			<div class="col-lg-9 text-right">
+				<div id="myDIV1" style="display :none">
+				<h4>
+					<a data-toggle="modal" data-target="#myModal" ng-click="clearSelect()">
+						Advanced User Authorization
+					</a>
+				</h4>
+				</div>
+			</div>
+		</div>
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-lg">
+
+				<!--Modal content-->
+				<div class="modal-content user-auth-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" ng-click="onChangeOfSelection()">&times;</button>
+						<h4 class="modal-title">Advanced User Authorization Dialog</h4>
+					</div>
+
+					<div class="modal-body">
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th class="col-lg-1">{{selectedAuthCriteria1}}</th>
+									<th class="col-lg-1">{{selectedAuthCriteria2}}</th>
+									<th class="col-lg-1">{{authCriteria3[0]}}</th>
+									<th class="col-lg-1">Action</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="stdata in popUpselelectionTable">
+									<td>{{stdata.customerSite}}</td>
+									<td>{{stdata.role}}</td>
+									<td>{{stdata.userGroup}}</td>
+									<td>
+										<input type="button" value="Remove" class="btn btn-primary btn-sm" ng-click="removePopUpTabelData(stdata.id)" />
+									</td>
+								</tr>
+							</tbody>
+						</table>
+
+						<div class="form-group">
+							<label for="sel2">Selected {{popSelectedAuthCriteria1}} : </label><label ng-repeat="name in popSelectedAuthCriteria1Data">{{name}}{{$last ? '' : ', '}}</label>
+							<select class="form-control" id="sel1" ng-model="popSelectedAuthCriteria1" ng-change="onPopAuthCriteria1Change()">
+								<option ng-repeat="criteria in popAuthCriteria1" value="{{criteria}}">{{criteria}}</option>
+							</select>
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Search" ng-model="authCriteria1Seach">
+								<div class="input-group-btn">
+									<button class="btn btn-default" type="submit">
+								        <i class="glyphicon glyphicon-search"></i>
+								     </button>
+								</div>
+							</div>
+							<ul class="acp-combobox">
+			                    <li ng-repeat="item in popAuthCriteria1Data|filter:authCriteria1Seach">
+			                        <div style="padding:0 0.5em;">
+			                        <input type="checkbox" ng-model="selected" ng-change="onPopAuthCriteria1Data(selected, $index)">
+			                        {{ item }}
+			                        </div>
+			                    </li>
+		                	</ul>
+						</div>
+						<button type="button" class="btn btn-primary btn-sm" ng-click="addNewTable();clearSelect()">Add</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-sm" data-dismiss="modal">Cancel</button>
+						<button type="button" class="btn btn-primary btn-sm">Save</button>
+						<!--<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Modal  end -->		
+		<div class="row">
+			<div class="col-lg-9">
+			<div id="myDIV" class="table-responsive" style="display :none">
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th class="col-xs-1">{{selectedAuthCriteria1}}</th>
+								<th class="col-xs-1">{{selectedAuthCriteria2}}</th>
+								<th class="col-xs-1">{{authCriteria3[0]}}</th>
+								<th class="col-xs-1">Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="st in selelectionTable">
+								<td>{{st.customerSite}}</td>
+								<td>{{st.role}}</td>
+								<td>{{st.userGroup}}</td>
+								<td>
+									<input type="button" value="Remove" class="btn btn-primary btn-sm" ng-click="removeTabelData(st.id)" />
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!--Actual 4 tabels-->
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="form-group">
+					<label for="sel2">Selected {{selectedAuthCriteria1}}:{{selectedAuthCriteria1Data}}</label>
+					<select class="form-control" id="sel1" ng-model="selectedAuthCriteria1" ng-change="onAuthCriteria1Change();showTable();">
+						<option ng-repeat="criteria in authCriteria1" value="{{criteria}}">{{criteria}}</option>
+					</select>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" ng-model="authCriteria1Seach">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+					        <i class="glyphicon glyphicon-search"></i>
+					      </button>
+						</div>
+					</div>
+					<select class="form-control" id="sel1_1" size="5" ng-model="selectedAuthCriteria1Data">
+						<option ng-repeat="data in authCriteria1Data|filter:authCriteria1Seach" value="{{data}}">{{data}}</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="col-lg-1">
+			</div>
+			<div class="col-lg-4">
+				<div class="form-group">
+					<label for="sel2">Selected {{selectedAuthCriteria2}}:{{selectedAuthCriteria2Data.join(', ')}}</label>
+					<select class="form-control" id="sel2" ng-model="selectedAuthCriteria2" ng-change="onAuthCriteria2Change()">
+						<option ng-repeat="criteria in authCriteria2" value="{{criteria}}">{{criteria}}</option>
+					</select>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" ng-model="authCriteria2Seach">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+					        <i class="glyphicon glyphicon-search"></i>
+					      </button>
+							<button ng-click="toggleFilterCriteria2()" class="btn btn-default" type="submit" data-toggle="tooltip" title="Filter using selected value from 1st drop-down.">
+					        <i class="glyphicon glyphicon-filter"></i><span ng-show="filterCriteria2Flag"> Unfilter</span><span ng-show="!filterCriteria2Flag"> Filter&nbsp;&nbsp;</span>
+					      </button>
+						</div>
+					</div>
+					<ul class="acp-combobox">
+						<li ng-repeat="(index,item) in authCriteria2Data|filter:authCriteria2Seach">
+							<div style="padding:0 0.5em;">
+								<input type="checkbox" ng-model="selected" ng-change="OnAuthcriteria2Chbx(selected, index)"> {{ item }}
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+
+			<div class="col-lg-4">
+				<div class="form-group">
+					<label for="sel2">Available
+						{{authCriteria3[0]}}</label>
+
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" ng-model="authCriteria3Seach">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+					<ul class="acp-combobox">
+	                    <li ng-repeat="(index,item) in authCriteria3Data|filter:authCriteria3Seach">
+	                        <div style="padding:0 0.5em;">
+	                        <input type="checkbox" ng-model="selected" ng-change="OnAuthcriteria3Chbx(selected, index)">
+	                        {{ item }}
+	                        </div>
+	                    </li>
+                	</ul>
+				</div>
+			</div>
+
+			<div class="col-lg-1">
+				<br/><br/><br/>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" ng-click="moveRight()"><span class="glyphicon glyphicon-arrow-right" style="font-size : 30px; font-weight: 400;"></span></a></div>
+				<div>&nbsp;&nbsp;&nbsp;&nbsp;<a href="javascript:void(0)" ng-click="moveLeft()"><span class="glyphicon glyphicon-arrow-left" style="font-size : 30px; font-weight: 400;"></span></a></div>
+			</div>
+
+			<div class="col-lg-4">
+				<div class="form-group">
+					<label for="sel2">Selected:</label><label ng-repeat="name in selectedAuthCriteria4Data">{{name}}{{$last ? '' : ', '}}</label>
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Search" ng-model="authCriteria4Seach">
+						<div class="input-group-btn">
+							<button class="btn btn-default" type="submit">
+								<i class="glyphicon glyphicon-search"></i>
+							</button>
+						</div>
+					</div>
+					<ul class="acp-combobox">
+	                    <li ng-repeat="item in authCriteria4Data|filter:authCriteria4Seach">
+	                        <div style="padding:0 0.5em;">
+		                        <input type="checkbox" ng-model="selected" ng-change="OnAuthcriteria4Chbx(selected, $index)">
+		                        {{ item }}
+		                        <span ng-show="selectedAuthCriteria2Data.length >0">({{selectedAuthCriteria2Data.join(', ')}})</span>
+	                        </div>
+	                    </li>
+                	</ul>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-9"></div>
+			<div class="col-lg-3">
+				<button type="button" class="btn btn-default btn-lg btn-space">Cancel</button>
+				<button type="button" class="btn btn-primary btn-lg">Save</button>
+			</div>
+		</div>
+	</form>
+</div>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en" ng-app="acp">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Analytics Control Panel</title>
+<link rel="icon" href="favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+<link rel="stylesheet" href="nav.css">
+<link rel="stylesheet"href="bower_components/bootstrap/dist/css/bootstrap.css" />
+<link rel="stylesheet" href="acp.css" />
+
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+
+<link rel="stylesheet" href="bower_components/jstree/dist/themes/default/style.css"/>
+<script src="bower_components/jstree/dist/jstree.js"></script>
+<script src="bower_components/jstree/dist/jstree.min.js"></script>
+    
+<!--pop Ups-->
+ <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!--acp module -->
+<script src="acp.module.js"></script>
+<script src="acp.config.js"></script>
+<!--Header module -->
+<script src="header/header.module.js"></script>
+<script src="header/header.component.js"></script>
+<!--User Authorization module -->
+<script src="user-authorization/user-authorization.module.js"></script>
+<script src="user-authorization/user-authorization.component.js"></script>
+<script src="user-authorization/user-authorization.service.js"></script>
+<!--Data Scope -->
+<script src="data-scope/data-scope.module.js"></script>
+<script src="data-scope/data-scope.component.js"></script>
+<script src="data-scope/data-scope.service.js"></script>
+    
+
+    
+</head>
+<body>
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<a href="#!home">Home</a> 
+		<a href="#!site">Client Site Management</a> 
+		<a href="#!role">Module Role Management</a> 
+		<a href="#!usermanagement">User Management</a> 
+		<a href="#!userauthorization">User Authorization</a>
+		<a href="#!datascope">Data Scope</a>
+	</div>
+
+	
+	<script>
+		function toggleNav() {
+			var ele=document.getElementById("main");
+			if(ele.style.marginLeft == "0px"){
+				document.getElementById("mySidenav").style.width = "250px";
+				ele.style.marginLeft = "250px";
+			}
+			else{
+				document.getElementById("mySidenav").style.width = "0px";
+				ele.style.marginLeft = "0px";
+			}
+		}
+
+		function closeNav() {
+			document.getElementById("mySidenav").style.width = "0px";
+			document.getElementById("main").style.marginLeft = "0px";
+		}
+	</script>
+	
+	<div id="main" style="left-margin:0px">
+	<div class="panel panel-default">
+	<div class="panel-heading ele-shadow">
+	  <div class="row">
+	  	<div class="col-lg-3">
+			<span style="font-size: 30px; cursor: pointer;padding-left:15px;" onclick="toggleNav()">&#9776; ACP</span>
+		</div>
+		
+		<div  class=col-lg-4>
+		<a class="btn btn-primary btn-md">AS Model</a>
+		<a href="#!datascope" class="btn btn-primary btn-md">Data Scope</a>
+		</div>
+	</div>
+	</div>
+    <div class="panel-body">
+		<div ng-view class="view-frame"></div>
+    </div>
+  	</div>
+	</div>
+</body>
+</html>

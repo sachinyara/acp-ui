@@ -1,0 +1,299 @@
+<div class="container-fluid">
+	<div class="page-header">
+		<h4>Data Scope</h4>
+	</div>
+	<form>
+		<div class="row">
+			<div class="col-lg-4">
+				<label>Customer Site:</label>
+				<div class="form-group">
+					<select class="form-control" id="customerSite" ng-model="selectedCustomerSite" ng-change="fillRoles()">
+					<option ng-repeat="item in customerSites" value="{{item}}">{{item}}</option>
+				</select>
+				</div>
+			</div>
+			<div class="col-lg-4">
+				<div class="form-group">
+					<div><label>Roles:</label></div>
+					<select class="form-control" id="roles" ng-model="selectedRole" ng-change="fillUserGroup()">
+					<option ng-repeat="item in roles" value="{{item}}">{{item}}</option>
+				</select>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-4">
+				<div class="form-group">
+					<div class="row">
+						<div class="col-lg-4">
+							<label>AS Model:</label>
+						</div>
+						<div class="col-lg-8">
+							<select id="aSModel" class="form-control" ng-model="selectedASModel">
+							<option ng-repeat="item in aSModels" value="{{item}}">{{item}}</option>
+						</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-lg-4">
+							<label>User Group:</label>
+						</div>
+						<div class="col-lg-8">
+							<select id="userGroup" class="form-control" ng-model="selectedUserGroup">
+							<option ng-repeat="item in userGroups" value="{{item}}">{{item}}</option>
+						</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-lg-4">
+							<label>Scope Status:</label>
+						</div>
+						<div class="col-lg-8">
+							<select id="scopeStatus" class="form-control" ng-change="OnScopeChange(selectedScopeStatus)" ng-model="selectedScopeStatus">
+							<option ng-repeat="item in scopeStatus" value="{{item}}">{{item}}</option>
+						</select>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<div class="row">
+						<div class="col-lg-4">
+							<label>Dimension:</label>
+						</div>
+						<div class="col-lg-8">
+							<select id="dimension" class="form-control" ng-model="selectedDimension" ng-change="markedChecked()">
+							<option ng-repeat="item in dimensions" value="{{item}}">{{item}}</option>
+						</select>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="row">
+			<div class="col-lg-5">
+				<table class="table table-bordered">
+					<thead>
+						<tr class="info">
+							<th class="col-lg-10">Data Scope For</th>
+							<th>Geography</th>
+							<th>Product</th>
+							<th>Measure</th>
+						</tr>
+					</thead>
+					<tbody align="center">
+						<tr>
+							<td>&nbsp;{{selectedCustomerSite}}&nbsp;{{selectedRole}}&nbsp;{{selectedUserGroup}}</td>
+							<td>
+								<label ng-show="selectedGeography" class="text-success"><span class="glyphicon glyphicon-ok"></span></label>
+							</td>
+							<td>
+								<label ng-show="selectedProduct" class="text-success"><span class="glyphicon glyphicon-ok"></span></label>
+							</td>
+							<td>
+								<label ng-show="selectedMeasure" class="text-success"><span class="glyphicon glyphicon-ok"></span></label>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<!--Adding tree logic for demo-->
+
+
+
+		<!--Adding tree logic for demo-->
+
+		<div id="scopeddiv1" class="row" style="display :none">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="row">
+						<div class="col-lg-5">
+							<div class="form-group">
+								<label for="comment">Available {{selectedDimension}}:</label>
+								<div class="well well-lg">
+									<div id="tree1">
+									<ul>
+										<li id="folder_1">US Foods
+											<ul>
+												<li id="child_1">Northeast</li>
+												<li id="child_2">Midwest</li>
+											</ul>
+										</li>
+										<li id="folder_2">Southwest</li>
+									</ul>
+								</div>
+								</div>
+								<!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+							</div>
+						</div>
+						<div class="col-lg-1">
+							<br/><br/>
+							<div><a href="javascript:void(0)"><span class="glyphicon glyphicon-arrow-right" style="font-size : 30px; font-weight: 400;"></span></a></div>
+							<div><a href="javascript:void(0)"><span class="glyphicon glyphicon-arrow-left" style="font-size : 30px; font-weight: 400;"></span></a></div>
+						</div>
+						<div class="col-lg-5">
+							<div class="form-group">
+								<label for="comment">Selected {{selectedDimension}}:</label>
+								<div class="well well-lg">
+									<div id="tree2">
+									<ul>
+										<li id="folder_1">US Foods
+											<ul>
+												<li id="child_1">Northeast</li>
+												<li id="child_2">Midwest</li>
+											</ul>
+										</li>
+										<li id="folder_2">Southwest</li>
+									</ul>
+								</div>
+							
+							</div>
+							</div>
+
+
+
+							<!--<textarea class="form-control" rows="5" id="comment"></textarea>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-lg-8">
+				<div class="col-lg-4">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="info">
+								<th>Geography</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-lg-4">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="info">
+								<th>Product</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div class="col-lg-4">
+					<table class="table table-bordered">
+						<thead>
+							<tr class="info">
+								<th>Measure</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>&nbsp;</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+</div>
+<div class="row">
+	<div class="col-lg-8"></div>
+	<div class="col-lg-2">
+		<button type="button" class="btn btn-default btn-lg btn-space">Cancel</button>
+	</div>
+	<div class=col-lg-1>
+		<button type="button" class="btn btn-primary btn-lg">Save</button>
+	</div>
+</div>
+</form>
+</div>
+
+<!--<div id="Tree"></div>-->
+
+
+<script>
+	$(function () {
+		//debugger;
+		$("#tree1").jstree({
+			"checkbox": {
+				"keep_selected_style": false
+			},
+			"core": {
+        "themes":{
+            "icons":false
+        }
+    },
+			"plugins": ["checkbox"]
+		});
+		$("#tree1").bind("changed.jstree",
+			function (e, data) {
+				//alert("Checked: " + data.node.id);
+				// alert("Parent: " + data.node.parent); 
+				//alert(JSON.stringify(data));
+			});
+	});
+
+
+
+
+	$("#tree2").jstree({
+			"checkbox": {
+				"keep_selected_style": false
+			},
+			"core": {
+        "themes":{
+            "icons":false
+        }
+    },
+			"plugins": ["checkbox"]
+		});
+
+
+
+	var data1 = [{
+		"id": "W",
+		"text": "World",
+		"state": { "opened": true },
+		"children": [{ "text": "Asia" },
+		{ "text": "Africa" },
+		{
+			"text": "Europe",
+			"state": { "opened": false },
+			"children": ["France", "Germany", "UK"]
+		}]
+	}];
+
+	$('#Tree').jstree({
+		core: {
+			data: data1,
+			check_callback: false
+		},
+		checkbox: {
+			three_state: false, // to avoid that fact that checking a node also check others
+			whole_node: false,  // to avoid checking the box just clicking the node 
+			tie_selection: false // for checking without selecting and selecting without checking
+		},
+		plugins: ['checkbox']
+	})
+		.on("check_node.jstree uncheck_node.jstree", function (e, data) {
+			//   alert(data.node.id + ' ' + data.node.text +
+			//         (data.node.state.checked ? ' CHECKED': ' NOT CHECKED'))
+		})
+
+</script>

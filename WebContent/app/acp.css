@@ -1,0 +1,18 @@
+a{
+	text-decoration: none !important
+}
+h4{
+	color:#337ab7 !important;
+}
+.btn-space {
+    margin-right: 50px;
+}
+
+.ele-shadow {
+	-webkit-box-shadow: 0px 1px 7px gray;
+          box-shadow: 0px 1px 7px gray;
+}
+ul.acp-combobox {
+	border: 1px solid #ccc;width:100%;list-style-type:none;;padding: 0;margin: 0px;    height: 7em;
+	overflow-y: auto;height:7em;
+}
