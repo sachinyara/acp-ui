@@ -57,7 +57,7 @@
 						</table>
 
 						<div class="form-group">
-							<label for="sel2">Selected {{popSelectedAuthCriteria1}} : </label><label ng-repeat="name in popSelectedAuthCriteria1Data">{{name}}{{$last ? '' : ', '}}</label>
+							<label for="sel2">Selected {{popSelectedAuthCriteria1}}&nbsp;: </label>&nbsp;<label ng-repeat="name in popSelectedAuthCriteria1Data">{{name}}{{$last ? '' : ', '}}</label>
 							<select class="form-control" id="sel1" ng-model="popSelectedAuthCriteria1" ng-change="onPopAuthCriteria1Change()">
 								<option ng-repeat="criteria in popAuthCriteria1" value="{{criteria}}">{{criteria}}</option>
 							</select>
@@ -119,7 +119,7 @@
 		<div class="row">
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="sel2">Selected {{selectedAuthCriteria1}}:{{selectedAuthCriteria1Data}}</label>
+					<label for="sel2">Selected {{selectedAuthCriteria1}}: {{selectedAuthCriteria1Data}}</label>
 					<select class="form-control" id="sel1" ng-model="selectedAuthCriteria1" ng-change="onAuthCriteria1Change();showTable();">
 						<option ng-repeat="criteria in authCriteria1" value="{{criteria}}">{{criteria}}</option>
 					</select>
@@ -141,7 +141,7 @@
 			</div>
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="sel2">Selected {{selectedAuthCriteria2}}:{{selectedAuthCriteria2Data.join(', ')}}</label>
+					<label for="sel2">Selected {{selectedAuthCriteria2}}: {{selectedAuthCriteria2Data.join(', ')}}</label>
 					<select class="form-control" id="sel2" ng-model="selectedAuthCriteria2" ng-change="onAuthCriteria2Change()">
 						<option ng-repeat="criteria in authCriteria2" value="{{criteria}}">{{criteria}}</option>
 					</select>
@@ -200,7 +200,7 @@
 
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="sel2">Selected:</label><label ng-repeat="name in selectedAuthCriteria4Data">{{name}}{{$last ? '' : ', '}}</label>
+					<label for="sel2">Selected :</label><label ng-repeat="name in selectedAuthCriteria4Data">{{name}}{{$last ? '' : ', '}}</label>
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search" ng-model="authCriteria4Seach">
 						<div class="input-group-btn">
