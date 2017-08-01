@@ -57,7 +57,7 @@
 						</table>
 
 						<div class="form-group">
-							<label for="sel2">Selected {{popSelectedAuthCriteria1}}&nbsp;: </label>&nbsp;<label ng-repeat="name in popSelectedAuthCriteria1Data">{{name}}{{$last ? '' : ', '}}</label>
+							<label for="sel2">Selected {{popSelectedAuthCriteria1}}: <span ng-repeat="name in popSelectedAuthCriteria1Data">{{name}}{{$last ? '' : ', '}}</span></label>
 							<select class="form-control" id="sel1" ng-model="popSelectedAuthCriteria1" ng-change="onPopAuthCriteria1Change()">
 								<option ng-repeat="criteria in popAuthCriteria1" value="{{criteria}}">{{criteria}}</option>
 							</select>
@@ -200,7 +200,7 @@
 
 			<div class="col-lg-4">
 				<div class="form-group">
-					<label for="sel2">Selected :</label><label ng-repeat="name in selectedAuthCriteria4Data">{{name}}{{$last ? '' : ', '}}</label>
+					<label for="sel2">Selected:&nbsp;<span ng-repeat="name in selectedAuthCriteria4Data">{{name}}{{$last ? '' : ', '}}</span></label>
 					<div class="input-group">
 						<input type="text" class="form-control" placeholder="Search" ng-model="authCriteria4Seach">
 						<div class="input-group-btn">
