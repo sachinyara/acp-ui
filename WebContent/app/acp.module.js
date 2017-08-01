@@ -5,5 +5,6 @@ angular.module('acp', [
   'ngRoute',
   'acpHeader',
   'userAuthorization',
-  'dataScope'
+  'dataScope',
+  'roleManagement'
 ]);

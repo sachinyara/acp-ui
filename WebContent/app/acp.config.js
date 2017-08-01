@@ -13,6 +13,9 @@ angular.
         when('/datascope', {
             template: '<scope></scope>'
           }).
+        when('/rolemanagement', {
+          template: '<role-management></role-management>'
+        }).
         otherwise('/userauthorization');
     }
   ]);

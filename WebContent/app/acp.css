@@ -16,3 +16,4 @@ ul.acp-combobox {
 	border: 1px solid #ccc;width:100%;list-style-type:none;;padding: 0;margin: 0px;    height: 7em;
 	overflow-y: auto;height:7em;
 }
+.hand{ cursor: pointer; cursor: hand; }

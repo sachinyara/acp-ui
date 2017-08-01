@@ -141,6 +141,11 @@ angular.module('userAuthorization').
 			$scope.$watchCollection('selectedAuthCriteria2Data', function(newNames, oldNames) {
 				$scope.onChangeOfSelection();
 			});
+			$scope.$watch('authCriteria2Seach', function(newNames, oldNames) {
+				$scope.selectedAuthCriteria2Data=$scope.selectedAuthCriteria2Data.filter(function(val){
+					return val.indexOf($scope.authCriteria2Seach)>-1
+					});
+			});
 			$scope.$watchCollection('authCriteria4Data', function(newNames, oldNames) {
 				$scope.onChangeOfSelection();
 			});
@@ -177,7 +182,6 @@ angular.module('userAuthorization').
 			$scope.toggleFilterCriteria2 = function () {
 				if ($scope.filterCriteria2Flag) {
 					$scope.authCriteria2Data = rawDataService.getAllProductData($scope.selectedAuthCriteria2);
-					$scope.selectedAuthCriteria2Data = [];
 					$scope.filterCriteria2Flag = false;
 				}
 				else {
