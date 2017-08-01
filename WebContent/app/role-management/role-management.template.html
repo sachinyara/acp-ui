@@ -1,0 +1,56 @@
+<div class="container-fluid">
+	
+	<form>
+		<div class="row">
+			<div class="col-lg-9">
+			<button type="button" class="btn btn-default btn-md">Application</button> &nbsp; &nbsp;
+			<button type="button" class="btn btn-default btn-md">Module</button> &nbsp; &nbsp;
+			<button type="button" class="btn btn-default btn-md">Feature</button>&nbsp; &nbsp;
+			<button type="button" class="btn btn-default btn-md active">Role</button>
+			</div>
+		</div>
+		<div class="row">&nbsp;</div>
+		<div class="row">
+			<div class="col-lg-9"><h4>Role Management</h4></div>
+		</div>
+		<div class="row">
+		<div class="col-lg-12">
+		<ig-grid id="grid1"
+                     data-source="roles"
+                     width="100%"
+                     height="400px"
+                     primary-key="id"
+                     auto-commit="true"
+                     auto-generate-columns="false">
+                <columns>
+                    <column key="id" header-text="ID" width="50px" data-type="number"></column>
+                    <column key="name" header-text="Name"  width="100px"  data-type="string"></column>
+                    <column key="description" header-text="Description"  width="200px" data-type="string"></column>
+                    <column key="isActive" header-text="Is Active"  width="100px" data-type="string"></column>
+                    <column key="moduleFeatureMapping" header-text="Module Feature Mapping" width="150px" data-type="string"></column>
+                    <column key="creationTime" header-text="Create Time"  width="200px"  data-type="string"></column>
+                    <column key="lastModifiedTime" header-text="Last Modified Time"  width="200px" data-type="string"></column>
+                    <column key="lastModifiedBy" header-text="Last Modified By"  width="100px" data-type="string"></column>
+                </columns>
+                <features>
+                    <feature name="Updating">
+                        <column-settings>
+                            <column-setting column-key="id" read-only="true"></column-setting>
+                            <column-setting column-key="isActive" multiple-selection="true"></column-setting>
+                            <column-setting column-key="creationTime" read-only="true"></column-setting>
+                            <column-setting column-key="lastModifiedTime" read-only="true"></column-setting>
+                            <column-setting column-key="lastModifiedBy" read-only="true"></column-setting>
+                        </column-settings>
+                    </feature>
+                    <feature name="Paging" page-size="10">
+                    </feature>
+                    <feature name="Filtering">
+                    </feature>
+                    <feature name="Sorting">
+                    </feature>
+                </features>
+            </ig-grid>
+		</div>
+		</div>
+	</form>
+</div>
